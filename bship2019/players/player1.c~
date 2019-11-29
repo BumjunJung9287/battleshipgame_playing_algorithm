@@ -1,0 +1,517 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <my-ipc.h>
+#include <client-side.h>
+#include <redundant.h>
+#include <public.h>
+
+const char myName[] = "03190276";
+const char deployment[] = "Bc8d8e8f8 Ca4a5a6 Ce0f0g0 Dc4c5 Dg6h6 Dh2i2 Sb1 Sh4 Sf2 Se6 ";
+
+int b,c,d = 0;
+int bb[8] = {0};
+int cc[6] = {0};
+int dd[4] = {0};
+
+enum ship {
+  UNKNOWN,
+  ROCK,
+  NOSHIP,
+  BSHIP,
+  CSHIP,
+  DSHIP,
+  SSHIP
+};
+
+int cur_x,cur_y;
+enum ship enemy_board[BD_SIZE][BD_SIZE];    // BD_SIZE is 9 (defined in public.h)
+
+/*
+void it_was_d(int x, int y){
+int c = 0;
+while (TRUE){
+			if (d==0) {
+				dd[2] = x;
+				dd[3] = y;
+				d=1;
+				c = 1;
+				int r;
+				r = rand()%4;
+				if (r==0 && y+1<9&& enemy_board[x][y+1] == UNKNOWN){
+					dd[0] = x;
+					dd[1] = y+1;
+					break;
+					}
+				if(r==1 && x-1>=0 && enemy_board[x-1][y] == UNKNOWN) {
+					dd[0] = x-1;
+					dd[1] = y;
+					break;
+					}
+				if (r==2 && y-1>=0 && enemy_board[x][y-1] == UNKNOWN){
+					dd[0] = x;
+					dd[1] = y-1;		
+					break;		
+					}
+				if (r==3 && x+1 <9 && enemy_board[x+1][y] == UNKNOWN){
+					dd[0] = x+1;
+					dd[1] = y;
+					break;
+					}
+				}
+		}	
+
+
+		if (c == 1 && d==1){
+			d=2;	
+	}
+}
+*/
+
+void it_was_s(int x, int y){
+  if (x+1<9){
+    enemy_board[x+1][y] = NOSHIP;
+    if (y+1<9) enemy_board[x+1][y+1] = NOSHIP;
+    if (y-1>=0) enemy_board[x+1][y-1] = NOSHIP;
+  }
+  if (x-1>=0){
+    enemy_board[x-1][y] = NOSHIP;
+    if (y+1 < 9) enemy_board[x-1][y+1] = NOSHIP;
+    if (y-1 >= 0) enemy_board[x-1][y-1] = NOSHIP;
+  }
+  if (y+1<9) enemy_board[x][y+1] = NOSHIP;
+  if (y-1>=0) enemy_board[x][y-1] = NOSHIP;
+}
+
+
+void respond_with_name(void)
+{
+  char *str = (char *)malloc(sizeof(myName));
+  strcpy(str, myName);
+  send_to_ref(str);
+  free(str);
+}
+
+void respond_with_deployment(void)
+{
+  char *str = (char *)malloc(sizeof(deployment));
+  strcpy(str, deployment);
+  send_to_ref(str);
+  free(str);
+}
+
+int is_rock(int x, int y){
+  if ((x==0&&(y==0||y==1||y==7||y==8))||(x==1&&(y==0||y==8))||(x==7&&(y==0||y==8))||(x==8&&(y==0||y==1||y==7||y==8))) return 1;
+  else return 0;
+}
+
+void init_board(void)
+{
+  //======kokokara======
+  int i,j;
+  for (i=0;i<9;i++){
+    for (j=0;j<9;j++){
+      if (is_rock(i,j) == 0){
+	enemy_board[i][j] = UNKNOWN;	
+      }
+      else if(is_rock(i,j)==1){
+	enemy_board[i][j] = ROCK;			
+      }	
+    }
+  }
+
+  //======kokomade======
+}
+
+void respond_with_shot(void)
+{
+  char shot_string[MSG_LEN];
+  int x, y;
+  
+  while (TRUE)
+  {
+    x = rand() % BD_SIZE;
+    y = rand() % BD_SIZE;
+    //=====kokokara=====
+    if (c==1){
+      x = cc[2];
+      y = cc[3];
+      break;
+    }
+    else if (c==10){
+      x = cc[4];
+      y = cc[5];
+      while(TRUE){
+	int r;
+	r = rand()%4;
+	if (r==0 && y+1<9 && enemy_board[x][y+1] == UNKNOWN){
+	  cc[2] = x;
+	  cc[3] = y+1;
+	  break;
+	}
+	if(r==1 && x-1>=0 && enemy_board[x-1][y] == UNKNOWN) {
+	  cc[2] = x-1;
+	  cc[3] = y;
+	  break;
+	}
+	if (r==2 && y-1>=0 && enemy_board[x][y-1] == UNKNOWN){
+	  cc[2] = x;
+	  cc[3] = y-1;		
+	  break;		
+	}
+	if (r==3 && x+1 <9 && enemy_board[x+1][y] == UNKNOWN){
+	  cc[2] = x+1;
+	  cc[3] = y;
+	  break;
+	}
+      }
+      c=1;
+      x = cc[2];
+      y = cc[3];
+      break;
+    }
+    else if (c==2){
+      x = cc[0];
+      y = cc[1];
+      break;
+    }
+    else if (c==3){
+      it_was_s(cc[0],cc[1]);
+      it_was_s(cc[2],cc[3]);
+      it_was_s(cc[4],cc[5]);
+      enemy_board[cc[0]][cc[1]] = CSHIP;
+      enemy_board[cc[2]][cc[3]] = CSHIP;
+      enemy_board[cc[4]][cc[5]] = CSHIP;
+      c = 0;
+    }
+    else if (c == 4){
+      if ((2*cc[2] == (cc[0] + cc[4])) && (2*cc[3] == (cc[1]+cc[5]))){
+	int x3,y3;
+	x3 = 2*cc[4] - cc[2];
+	y3 = 2*cc[5] - cc[3];
+	x = x3;
+	y = y3;
+	cc[0] = x3;
+	cc[1] = y3;
+	break;
+      }
+      else {
+	int x2,y2;
+	x2 = 2*cc[2] - cc[4];
+	y2 = 2*cc[3] - cc[5];
+	x = x2;
+	y = y2;
+	cc[0] = x2;
+	cc[1] = y2;
+	break;
+      }
+    }
+    else if (c==5){
+      it_was_s(cc[0],cc[1]);
+      it_was_s(cc[2],cc[3]);
+      it_was_s(cc[4],cc[5]);
+      enemy_board[cc[0]][cc[1]] = CSHIP;
+      enemy_board[cc[2]][cc[3]] = CSHIP;
+      enemy_board[cc[4]][cc[5]] = CSHIP;
+      c=0;
+    }    
+    if (d==1){
+      x = dd[0];
+      y = dd[1];
+      break;
+    }
+    if (d==3){
+      d=0;
+      x = dd[2];
+      y = dd[3];
+      if (d==0){
+	while(TRUE){
+	  int r;
+	  r = rand()%4;
+	  if (r==0 && y+1<9 && enemy_board[x][y+1] == UNKNOWN){
+	    dd[0] = x;
+	    dd[1] = y+1;
+	    break;
+	  }
+	  if(r==1 && x-1>=0 && enemy_board[x-1][y] == UNKNOWN) {
+	    dd[0] = x-1;
+	    dd[1] = y;
+	    break;
+	  }
+	  if (r==2 && y-1>=0 && enemy_board[x][y-1] == UNKNOWN){
+	    dd[0] = x;
+	    dd[1] = y-1;		
+	    break;		
+	  }
+	  if (r==3 && x+1 <9 && enemy_board[x+1][y] == UNKNOWN){
+	    dd[0] = x+1;
+	    dd[1] = y;
+	    break;
+	  }
+	}
+	d=1;
+      }	
+      
+      //it_was_d(dd[2],dd[3]);
+      x = dd[0];
+      y = dd[1];
+      break;
+    }
+    if (d==2){
+      it_was_s(dd[0],dd[1]);
+      it_was_s(dd[2],dd[3]);
+      enemy_board[dd[0]][dd[1]] = DSHIP;
+      enemy_board[dd[2]][dd[3]] = DSHIP;
+      d=0;
+    }
+    if (enemy_board[x][y] == UNKNOWN){
+      break;
+    }
+    
+  }  //=====kokomade=====
+  
+  printf("[%s] shooting at %d%d ... ", myName, x, y);
+  sprintf(shot_string, "%d%d", x, y);
+  send_to_ref(shot_string);
+  cur_x = x;
+  cur_y = y;
+}
+
+
+void record_result(int x,int y,char line[])
+{
+	printf("\n\n\n\n");
+  if(line[13]=='B')
+  {
+    //====kokokara====
+    enemy_board[x][y] = BSHIP;
+
+    //====kokomade====
+  }
+  else if(line[13]=='C')
+  {
+    //====kokokara====
+    enemy_board[x][y] = CSHIP;
+    if (c == 0){
+      while (TRUE) {
+	cc[4] = x;
+	cc[5] = y;
+	int r;
+	r = rand()%4;
+	if (r==0 && y+1<9 && enemy_board[x][y+1] == UNKNOWN){
+	  cc[2] = x;
+	  cc[3] = y+1;
+	  c = 1;
+	  break;
+	}
+	if (r==1 && x-1>=0 && enemy_board[x-1][y] == UNKNOWN){
+	  cc[2] = x-1;
+	  cc[3] = y;
+	  c = 1;
+	  break;
+	}
+	if (r==2 && y-1>=0 && enemy_board[x][y-1] == UNKNOWN){
+	  cc[2] = x;
+	  cc[3] = y-1;
+	  c = 1;
+	  break;
+	}
+	if (r==3 && x+1<9 && enemy_board[x+1][y] == UNKNOWN){
+	  cc[2] = x+1;
+	  cc[3] = y;
+	  c = 1;
+	  break;       //ランダムに決めてc=1で次に！
+	}
+      }
+    }
+    else if (c==1){
+      c=2;
+      int x2,x3,y2,y3;
+      x2 = 2*x - cc[4];
+      y2 = 2*y - cc[5];
+      x3 = 2*cc[4] - cc[2];
+      y3 = 2*cc[5] - cc[3];
+      cc[2] = x;
+      cc[3] = y;
+      if (0<=x2 && x2<9 && 0<=y2 && y2<9 && enemy_board[x2][y2]==UNKNOWN){ //順方向
+	cc[0] = x2;
+	cc[1] = y2;  
+      }
+      else if  (0<=x3 && x3<9 && 0<=y3 && y3<9 && enemy_board[x3][y3] == UNKNOWN){ //逆方向
+	cc[0] = x3;
+	cc[1] = y3;
+      }
+    }
+    else if (c==2) c=3;
+    else if (c==4) c=5;
+    
+
+
+    //====kokomade====
+  }
+  else if(line[13]=='D')
+  {
+    //====kokokara====
+    enemy_board[x][y] = DSHIP;
+    if (d==1) d=2;
+    if (d==0){
+      while (TRUE) {
+	dd[2] = x;
+	dd[3] = y;
+	int r;
+	r = rand()%4;
+	if (r==0 && y+1<9 && enemy_board[x][y+1] == UNKNOWN){
+	  dd[0] = x;
+	  dd[1] = y+1;
+	  d=1;
+	  break;
+	}
+	if(r==1 && x-1>=0 && enemy_board[x-1][y] == UNKNOWN) {
+	  dd[0] = x-1;
+	  dd[1] = y;
+	  d=1;
+	  break;
+	}
+	if (r==2 && y-1>=0 && enemy_board[x][y-1] == UNKNOWN){
+	  dd[0] = x;
+	  dd[1] = y-1;		
+	  d=1;
+	  break;		
+	}
+	if (r==3 && x+1 <9 && enemy_board[x+1][y] == UNKNOWN){
+	  dd[0] = x+1;
+	  dd[1] = y;
+	  d=1;
+	  break;
+	}
+      }
+    }	
+    //====kokomade====
+  }
+  else if(line[13]=='S')
+  {
+    //====kokokara====
+    enemy_board[x][y] = SSHIP;
+    it_was_s(x,y);
+    
+    //====kokomade====
+  }
+  else if(line[13]=='R')
+  {
+    //====kokokara====
+    enemy_board[x][y] = ROCK;
+    
+    //====kokomade====
+  }
+  else
+  {
+    //====kokokara====
+    enemy_board[x][y] = NOSHIP;
+    if (c==1){
+      c = 10;
+    }
+    else if (c==2){
+      c = 4;
+    }
+	
+    if (d==1){
+      d=3;
+    }
+
+
+    //====kokomade====
+  }
+}
+
+void print_board(void){
+  int ix, iy;
+
+  for (iy = BD_SIZE - 1; iy >= 0; iy--)
+  {
+    printf("%2d ", iy);
+    for (ix = 0; ix < BD_SIZE; ix++)
+    {
+      switch(enemy_board[ix][iy])
+      {
+        case UNKNOWN:
+          printf("U ");
+          break;
+        case NOSHIP:
+          printf("N ");
+          break;
+        case ROCK:
+          printf("R ");
+          break;
+        case BSHIP:
+          printf("B ");
+          break;
+        case CSHIP:
+          printf("C ");
+          break;
+        case DSHIP:
+          printf("D ");
+          break;
+        case SSHIP:
+          printf("S ");
+          break;
+        default:
+          break;
+      }
+    }
+    printf("\n");
+  }
+
+  printf("  ");
+  for (ix = 0; ix < BD_SIZE; ix++)
+  {
+    printf("%2d", ix);
+  }
+  printf("\n\n");
+}
+
+void handle_messages(void)
+{
+  char line[MSG_LEN];
+
+  srand(getpid());
+  init_board();
+  
+  while (TRUE)
+  {
+    receive_from_ref(line);
+
+    if(message_has_type(line, "name?"))
+    {
+      respond_with_name(); 
+    }
+    else if(message_has_type(line, "deployment?"))
+    {
+       respond_with_deployment(); 
+    }
+    else if(message_has_type(line, "shot?"))
+    {
+      respond_with_shot(); 
+    }
+    else if(message_has_type(line, "shot-result:"))
+    {
+      record_result(cur_x,cur_y,line);
+      printf("[%s] result: %c\n", myName, line[13]);
+      print_board();
+    }
+    else if(message_has_type(line, "end:"))
+    {
+      break;
+    }
+    else
+    {
+      printf("[%s] ignoring message: %s", myName, line);
+    }
+  }
+}
+
+int main()
+{
+  client_make_connection();
+  handle_messages();
+  client_close_connection();
+  return 0;
+}

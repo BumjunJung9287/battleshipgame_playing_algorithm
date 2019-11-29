@@ -1,0 +1,295 @@
+[Master] server is accepting
+[Master] client connected
+[Master] client claims to be `strong TA'
+[Master] client connected
+[Master] client claims to be `03190276'
+[Master] both clients connected
+[Master] strong TA sent deployment `Bc8d8e8f8 Cg2g3g4 Ci2i3i4 Da2a3 De0e1 Df6g6 Sa6 Sg0 Si6 Sc0 '
+
+[Master] processing deployment Bc8d8e8f8 Cg2g3g4 Ci2i3i4 Da2a3 De0e1 Df6g6 Sa6 Sg0 Si6 Sc0 
+[Master] 03190276 sent deployment `Bc8d8e8f8 Ca4a5a6 Ce0f0g0 De4f4 Dg6h6 Dh2i2 Sb1 Sh4 Sf2 Se6 '
+
+[Master] processing deployment Bc8d8e8f8 Ca4a5a6 Ce0f0g0 De4f4 Dg6h6 Dh2i2 Sb1 Sh4 Sf2 Se6 
+
+            player0's ships             player1's ships
+            0 1 2 3 4 5 6 7 8           0 1 2 3 4 5 6 7 8 
+          8  R R B B B B . R R  i      8 R R B B B B . R R  i 
+          7  R . . . . . . . R  h      7 R . . . . . . . R  h 
+          6  S . . . . D D . S  g      6 C . . . S . D D .  g 
+          5  . . . . . . . . .  f      5 C . . . . . . . .  f 
+          4  . . . . . . C . C  e      4 C . . . D D . S .  e 
+          3  D . . . . . C . C  d      3 . . . . . . . . .  d 
+          2  D . . . . . C . C  c      2 . . . . . S . D D  c 
+          1  R . . . D . . . R  b      1 R S . . . . . . R  b 
+          0  R R S . D . S R R  a      0 R R . . C C C R R  a 
+            0 1 2 3 4 5 6 7 8           0 1 2 3 4 5 6 7 8 
+[Master] strong TA sent shot 0,2 
+[Master] 03190276 sent shot 0,2 
+[Master] strong TA sent shot 0,3 
+[Master] 03190276 sent shot 1,2 
+[Master] strong TA sent shot 0,4 
+[Master] 03190276 sent shot 0,3 
+[Master] strong TA sent shot 1,4 
+[Master] 03190276 sent shot 0,6 
+[Master] strong TA sent shot 0,5 
+[Master] 03190276 sent shot 2,8 
+[Master] strong TA sent shot 0,6 
+[Master] 03190276 sent shot 2,7 
+[Master] strong TA sent shot 2,8 
+[Master] 03190276 sent shot 3,8 
+[Master] strong TA sent shot 3,8 
+[Master] 03190276 sent shot 4,8 
+[Master] strong TA sent shot 4,8 
+[Master] 03190276 sent shot 5,8 
+[Master] strong TA sent shot 5,8 
+[Master] 03190276 sent shot 2,0 
+[Master] strong TA sent shot 8,2 
+[Master] 03190276 sent shot 6,0 
+[Master] strong TA sent shot 7,2 
+[Master] 03190276 sent shot 8,6 
+[Master] strong TA sent shot 6,0 
+[Master] 03190276 sent shot 8,2 
+[Master] strong TA sent shot 5,0 
+[Master] 03190276 sent shot 7,2 
+[Master] strong TA sent shot 4,0 
+[Master] 03190276 sent shot 8,3 
+[Master] strong TA sent shot 2,0 
+[Master] 03190276 sent shot 8,4 
+[Master] strong TA sent shot 8,4 
+[Master] 03190276 sent shot 2,2 
+[Master] strong TA sent shot 8,5 
+[Master] 03190276 sent shot 6,2 
+[Master] strong TA sent shot 8,6 
+[Master] 03190276 sent shot 6,3 
+[Master] strong TA sent shot 7,7 
+[Master] 03190276 sent shot 6,4 
+[Master] strong TA sent shot 1,1 
+[Master] 03190276 sent shot 2,6 
+[Master] strong TA sent shot 5,2 
+[Master] 03190276 sent shot 6,6 
+[Master] strong TA sent shot 3,2 
+[Master] 03190276 sent shot 5,6 
+[Master] strong TA sent shot 7,4 
+[Master] 03190276 sent shot 4,4 
+[Master] strong TA sent shot 7,6 
+[Master] 03190276 sent shot 4,3 
+[Master] strong TA sent shot 6,6 
+[Master] 03190276 sent shot 4,1 
+[Master] strong TA sent shot 5,4 
+[Master] 03190276 sent shot 4,2 
+[Master] strong TA sent shot 4,4 
+[Master] 03190276 sent shot 4,0 
+[Master] 03190276 (player 1) wins! (on round 27)
+[Master] ---all done--- 
+ U U U U U U U 
+ 1 N N N N U N N N R 
+ 0 R N S N U N S N R 
+   0 1 2 3 4 5 6 7 8
+
+[03190276] shooting at 82 ... 
+
+
+
+[03190276] result: C
+ 8 R N B B B B N R R 
+ 7 N N N N N N N N N 
+ 6 S N U U U U U N S 
+ 5 N N U U U U U N N 
+ 4 N N U U U U U U U 
+ 3 D N U U U U U U U 
+ 2 D N U U U U U U C 
+ 1 N N N N U N N N R 
+ 0 R N S N U N S N R 
+   0 1 2 3 4 5 6 7 8
+
+[03190276] shooting at 72 ... 
+
+
+
+[03190276] result:  
+ 8 R N B B B B N R R 
+ 7 N N N N N N N N N 
+ 6 S N U U U U U N S 
+ 5 N N U U U U U N N 
+ 4 N N U U U U U U U 
+ 3 D N U U U U U U U 
+ 2 D N U U U U U N C 
+ 1 N N N N U N N N R 
+ 0 R N S N U N S N R 
+   0 1 2 3 4 5 6 7 8
+
+[03190276] shooting at 83 ... 
+
+
+
+[03190276] result: C
+ 8 R N B B B B N R R 
+ 7 N N N N N N N N N 
+ 6 S N U U U U U N S 
+ 5 N N U U U U U N N 
+ 4 N N U U U U U U U 
+ 3 D N U U U U U U C 
+ 2 D N U UN R 
+ 0 R R U N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 20 ... [strong TA] result:  
+ 8 R R B B B B N R R 
+ 7 R N N N N N N U R 
+ 6 C N U U U U U U U 
+ 5 C N U U U U U U U 
+ 4 C N U U U U U U U 
+ 3 N N U U U U N N N 
+ 2 N U U U U U N D D 
+ 1 R U U N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 84 ... [strong TA] result:  
+ 8 R R B B B B N R R 
+ 7 R N N N N N N U R 
+ 6 C N U U U U U U U 
+ 5 C N U U U U U U U 
+ 4 C N U U U U U U N 
+ 3 N N U U U U N N N 
+ 2 N U U U U U N D D 
+ 1 R U U N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 85 ... [strong TA] result:  
+ 8 R R B B B B N R R 
+ 7 R N N N N N N U R 
+ 6 C N U U U U U U U 
+ 5 C N U U U U U U N 
+ 4 C N U U U U U U N 
+ 3 N N U U U U N N N 
+ 2 N U U U U U N D D 
+ 1 R U U N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 86 ... [strong TA] result:  
+ 8 R R B B B B N R R 
+ 7 R N N N N N N U R 
+ 6 C N U U U U U U N 
+ 5 C N U U U U U U N 
+ 4 C N U U U U U U N 
+ 3 N N U U U U N N N 
+ 2 N U U U U U N D D 
+ 1 R U U N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 77 ... [strong TA] result:  
+ 8 R R B B B B N R R 
+ 7 R N N N N N N N R 
+ 6 C N U U U U U U N 
+ 5 C N U U U U U U N 
+ 4 C N U U U U U U N 
+ 3 N N U U U U N N N 
+ 2 N U U U U U N D D 
+ 1 R U U N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 11 ... [strong TA] result: S
+ 8 R R B B B B N R R 
+ 7 R N N N N N N N R 
+ 6 C N U U U U U U N 
+ 5 C N U U U U U U N 
+ 4 C N U U U U U U N 
+ 3 N N U U U U N N N 
+ 2 N N N U U U N D D 
+ 1 R S N N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 52 ... [strong TA] result: S
+ 8 R R B B B B N R R 
+ 7 R N N N N N N N R 
+ 6 C N U U U U U U N 
+ 5 C N U U U U U U N 
+ 4 C N U U U U U U N 
+ 3 N N U U N N N N N 
+ 2 N N N U N S N D D 
+ 1 R S N N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 32 ... [strong TA] result:  
+ 8 R R B B B B N R R 
+ 7 R N N N N N N N R 
+ 6 C N U U U U U U N 
+ 5 C N U U U U U U N 
+ 4 C N U U U U U U N 
+ 3 N N U U N N N N N 
+ 2 N N N N N S N D D 
+ 1 R S N N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 74 ... [strong TA] result: S
+ 8 R R B B B B N R R 
+ 7 R N N N N N N N R 
+ 6 C N U U U U U U N 
+ 5 C N U U U U N N N 
+ 4 C N U U U U N S N 
+ 3 N N U U N N N N N 
+ 2 N N N N N S N D D 
+ 1 R S N N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 76 ... [strong TA] result: D
+ 8 R R B B B B N R R 
+ 7 R N N N N N N N R 
+ 6 C N U U U U U D N 
+ 5 C N U U U U N N N 
+ 4 C N U U U U N S N 
+ 3 N N U U N N N N N 
+ 2 N N N N N S N D D 
+ 1 R S N N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 66 ... [strong TA] result: D
+ 8 R R B B B B N R R 
+ 7 R N N N N N N N R 
+ 6 C N U U U N D D N 
+ 5 C N U U U N N N N 
+ 4 C N U U U U N S N 
+ 3 N N U U N N N N N 
+ 2 N N N N N S N D D 
+ 1 R S N N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 54 ... [strong TA] result: D
+ 8 R R B B B B N R R 
+ 7 R N N N N N N N R 
+ 6 C N U U U N D D N 
+ 5 C N U U N N N N N 
+ 4 C N U U U D N S N 
+ 3 N N U U N N N N N 
+ 2 N N N N N S N D D 
+ 1 R S N N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] shooting at 44 ... [strong TA] result: D
+ 8 R R B B B B N R R 
+ 7 R N N N N N N N R 
+ 6 C N U U U N D D N 
+ 5 C N U N N N N N N 
+ 4 C N U N D D N S N 
+ 3 N N U N N N N N N 
+ 2 N N N N N S N D D 
+ 1 R S N N N N N N R 
+ 0 R R N N C C C R R 
+   0 1 2 3 4 5 6 7 8
+
+[strong TA] ignoring message: game-result: you-lose
+8
+
+[03190276] ignoring message: game-result: you-win

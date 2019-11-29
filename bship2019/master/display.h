@@ -1,0 +1,10 @@
+void create_canvas(void);
+void close_canvas(void);
+void display_player_name(int player, char *player_name);
+void display_two_boards(void);
+void display_result(int x, int y, int pl, char result);
+void set_who_next(int player);
+void clear_who_next(void);
+int process_events(void);
+void set_stopped(void);
+void display_winner(char *message);
