@@ -30,6 +30,7 @@ Now you will see this kind of screen
 ![Screenshot from 2019-11-29 19-07-39](https://user-images.githubusercontent.com/47442084/69862328-8237f880-12dd-11ea-91d8-8d721f39ada7.png)
 
 if you want to play step by step, you can continuosly click step button
+
 if you want to see the quick resault, click run button.
 
 this is the resault
